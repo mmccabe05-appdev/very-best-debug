@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
-
-  def index
+ 
+  def home
     matching_users = User.all
     @users = matching_users.order(:created_at)
 
-    render({ :template => "users_templates/all_users.html.erb"})
+    render({ :template => "user_templates/all_users.html.erb"})
   end
-  
+
+  def all_users
+
+    redirect_to("/")
+  end
+
   def show
     username = params.fetch("username")
     matching_users = User.where({ :username => username })
